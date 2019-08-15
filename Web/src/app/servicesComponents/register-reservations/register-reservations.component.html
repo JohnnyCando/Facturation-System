@@ -1,0 +1,142 @@
+<br>
+<br>
+<br>
+<p-toast [style]="{marginTop: '80px'}"></p-toast>
+<div class="ui-fluid">
+  <div class="ui-grid-row">
+    <div class="ui-grid-col-2 containers ui-fluid ">
+      <br>
+      <br>
+      <br>
+      <div class="ui-fluid">
+        <p-card class="register ui-fluid" header="Make your reservation now!!!" subheader="Access right now!"
+                [style]="{width: '360px'}" styleClass="ui-card-shadow ">
+          <p-header>
+            <img class="img" align="left" src="../../assets/logo.png"/>
+          </p-header>
+          <div>
+            Enjoy the convenience of our web service, so you can schedule an appointment for the day and time you want
+            to enjoy our barber and hairdressing services.
+          </div>
+          <p-footer>
+            <a routerLink="/home" style="margin-right: .25em">Go to Home</a>
+
+          </p-footer>
+        </p-card>
+      </div>
+    </div>
+    <div class="ui-fluid">
+      <div class="ui-grid-col-6">
+        <div>
+          <form [formGroup]="reservationFrom" class="login-container"
+                (ngSubmit)="onSubmit(reservationFrom.value)">
+            <p-panel
+              class="ng-tns-c4-15 ui-panel-titlebar ui-widget-header ui-helper-clearfix ui-corner-all ng-star-inserted "
+              header="Register your Reservation">
+              <div class="ui-grid ui-grid-responsive ui-grid-pad ui-fluid" style="margin: 10px 0px">
+                <br>
+                <div class="ui-grid-row">
+                  <div class="ui-grid-col-2">
+                    Reservation Date *:
+                  </div>
+                  <div class="ui-grid-col-6">
+                    <p-calendar formControlName="reservation_date" placeholder="Required" showIcon="true"
+                                [monthNavigator]="true" [yearNavigator]="true" yearRange="1950:2030"
+                                ShowTime="false" [(ngModel)]="reservation.reservation_date"></p-calendar>
+                  </div>
+                  <div>
+                    <p-message severity="error" readonlyInput="true"
+                               [text]="reservationFrom.controls['reservation_date'].errors['required'] ? 'Reservation date is required' : ''"
+                               *ngIf="!reservationFrom.controls['reservation_date'].valid && reservationFrom.controls['reservation_date'].dirty"></p-message>
+                    <p-message severity="success"
+                               *ngIf="reservationFrom.controls['reservation_date'].valid && reservationFrom.controls['reservation_date'].dirty"></p-message>
+                  </div>
+                </div>
+                <br>
+                <div class="ui-grid-row">
+                  <div class="ui-grid-col-2">
+                    Reservation Hour *:
+                  </div>
+                  <div class="ui-grid-col-6">
+                    <p-calendar formControlName="reservation_hour" [timeOnly]="true" placeholder="Required"
+                                showIcon="true"
+                                [(ngModel)]="reservation.reservation_hour" hourFormat="24"></p-calendar>
+                  </div>
+                  <div>
+                    <p-message severity="error" readonlyInput="true"
+                               [text]="reservationFrom.controls['reservation_hour'].errors['required'] ? 'Reservation hour is required' : ''"
+                               *ngIf="!reservationFrom.controls['reservation_hour'].valid && reservationFrom.controls['reservation_hour'].dirty"></p-message>
+                    <p-message severity="success"
+                               *ngIf="reservationFrom.controls['reservation_hour'].valid && reservationFrom.controls['reservation_hour'].dirty"></p-message>
+                  </div>
+                </div>
+                <br>
+                <div class="ui-grid-row">
+                  <div class="ui-grid-col-2">
+                    Hairdressers *:
+                  </div>
+                  <div class="ui-grid-col-6">
+                    <p-dropdown [options]="hairdressers1" placeholder="Select a Brand" formControlName="hairdressers"
+                                [(ngModel)]="reservation.hairdressers"></p-dropdown>
+                  </div>
+                  <div>
+                    <p-message severity="error" text="hairdresser is required"
+                               *ngIf="!reservationFrom.controls['hairdressers'].valid&&reservationFrom.controls['hairdressers'].dirty"></p-message>
+                    <p-message severity="success"
+                               *ngIf="reservationFrom.controls['hairdressers'].valid && reservationFrom.controls['hairdressers'].dirty"></p-message>
+                  </div>
+                </div>
+                <br>
+                <br>
+                <div class="ui-grid-row">
+                  <div class="ui-grid-col-2">
+                    Type Service *:
+                  </div>
+                  <div class="ui-grid-col-6">
+                    <p-dropdown [options]="services" placeholder="Select a Brand" formControlName="services_id"
+                                [(ngModel)]="reservation.services_id"
+                                (onChange)="getSubServs(reservation.services_id)"></p-dropdown>
+                  </div>
+                  <div>
+                    <p-message severity="error" text="Service is required"
+                               *ngIf="!reservationFrom.controls['services_id'].valid&&reservationFrom.controls['services_id'].dirty"></p-message>
+                    <p-message severity="success"
+                               *ngIf="reservationFrom.controls['services_id'].valid && reservationFrom.controls['services_id'].dirty"></p-message>
+                  </div>
+                  <div class="ui-grid-col-2">
+                    Service *:
+                  </div>
+                  <div class="ui-grid-col-6">
+                    <p-dropdown [options]="sub_services" placeholder="Select a Brand" formControlName="sub_services_id"
+                                [(ngModel)]="reservation.sub_service_id"></p-dropdown>
+                  </div>
+                  <div>
+                    <p-message severity="error" text="Service is required"
+                               *ngIf="!reservationFrom.controls['sub_services_id'].valid&&reservationFrom.controls['sub_services_id'].dirty"></p-message>
+                    <p-message severity="success"
+                               *ngIf="reservationFrom.controls['sub_services_id'].valid && reservationFrom.controls['sub_services_id'].dirty"></p-message>
+                  </div>
+                </div>
+
+                <br>
+                <div class="ui-grid-row">
+                  <div class="ui-grid-col-2"></div>
+                  <div class="ui-grid-col-6">
+                    <button pButton type="submit" label="Register" [disabled]="!reservationFrom.valid"
+                            (click)="onRegisterReservations()"></button>
+                  </div>
+                  <div class="ui-grid-col-4"></div>
+                </div>
+                <div style="text-align:center;margin-top:20px" *ngIf="submitted">
+                  Form Submitted
+                  <br>
+
+                </div>
+              </div>
+            </p-panel>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

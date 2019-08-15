@@ -1,0 +1,107 @@
+<br>
+<br>
+<br>
+<p-toast [style]="{marginTop: '80px'}"></p-toast>
+<div class="ui-fluid">
+  <div class="ui-grid-row">
+    <div class="ui-grid-col-2 containers ui-fluid ">
+      <br>
+      <br>
+      <br>
+      <div class="ui-fluid">
+        <p-card class="register ui-fluid" header="Make your reservation now!!!" subheader="Access right now!"
+                [style]="{width: '360px'}" styleClass="ui-card-shadow ">
+          <p-header>
+            <img class="img" align="left" src="../../assets/logo.png"/>
+          </p-header>
+          <div>
+            Enjoy the convenience of our web service, so you can schedule an appointment for the day and time you want
+            to enjoy our barber and hairdressing services.
+          </div>
+          <p-footer>
+            <a routerLink="/home" style="margin-right: .25em">Go to Home</a>
+
+          </p-footer>
+        </p-card>
+      </div>
+    </div>
+    <div class="ui-fluid">
+      <div class="ui-grid-col-6">
+        <div>
+          <form [formGroup]="productsWineriesForm" class="login-container"
+                (ngSubmit)="onSubmit(productsWineriesForm.value)">
+            <p-panel
+              class="ng-tns-c4-15 ui-panel-titlebar ui-widget-header ui-helper-clearfix ui-corner-all ng-star-inserted "
+              header="Register your Reservation">
+              <div class="ui-grid ui-grid-responsive ui-grid-pad ui-fluid" style="margin: 10px 0px">
+                <br>
+                <div class="ui-grid-row">
+                  <div class="ui-grid-col-2">
+                    Quantity of Product *:
+                  </div>
+                  <div class="ui-grid-col-6">
+                    <input pInputText type="text"
+                           class="ng-untouched ng-pristine ng-invalid ui-inputtext ui-corner-all ui-state-default ui-widget"
+                           formControlName="quantityOfProducts" [(ngModel)]="reservation.quantityOfProducts" placeholder="Required"/>
+                  </div>
+                  <div>
+                    <p-message severity="error" text="quantityOfProducts is required"
+                               *ngIf="!productsWineriesForm.controls['quantityOfProducts'].valid&&productsWineriesForm.controls['quantityOfProducts'].dirty"></p-message>
+                    <p-message severity="success" class="containers1"
+                               *ngIf="productsWineriesForm.controls['quantityOfProducts'].valid && productsWineriesForm.controls['quantityOfProducts'].dirty"></p-message>
+                  </div>
+                </div>
+                <br>
+                <br>
+                <div class="ui-grid-row">
+                  <div class="ui-grid-col-2">
+                    Type Product *:
+                  </div>
+                  <div class="ui-grid-col-6">
+                    <p-dropdown [options]="typeProducts" placeholder="Select a Brand" formControlName="type_products"
+                                [(ngModel)]="reservation.type_products"
+                                (onChange)="getSubServs(reservation.type_products)"></p-dropdown>
+                  </div>
+                  <div>
+                    <p-message severity="error" text="type_products is required"
+                               *ngIf="!productsWineriesForm.controls['type_products'].valid&&productsWineriesForm.controls['type_products'].dirty"></p-message>
+                    <p-message severity="success"
+                               *ngIf="productsWineriesForm.controls['type_products'].valid && productsWineriesForm.controls['type_products'].dirty"></p-message>
+                  </div>
+                  <div class="ui-grid-col-2">
+                    Product *:
+                  </div>
+                  <div class="ui-grid-col-6">
+                    <p-dropdown [options]="Products" placeholder="Select a Brand" formControlName="products_id"
+                                [(ngModel)]="reservation.products_id"></p-dropdown>
+                  </div>
+                  <div>
+                    <p-message severity="error" text="Service is required"
+                               *ngIf="!productsWineriesForm.controls['products_id'].valid&&productsWineriesForm.controls['products_id'].dirty"></p-message>
+                    <p-message severity="success"
+                               *ngIf="productsWineriesForm.controls['products_id'].valid && productsWineriesForm.controls['products_id'].dirty"></p-message>
+                  </div>
+                </div>
+
+                <br>
+                <div class="ui-grid-row">
+                  <div class="ui-grid-col-2"></div>
+                  <div class="ui-grid-col-6">
+                    <button pButton type="submit" label="Register" [disabled]="!productsWineriesForm.valid"
+                            (click)="onRegisterProductInWiniries()"></button>
+                  </div>
+                  <div class="ui-grid-col-4"></div>
+                </div>
+                <div style="text-align:center;margin-top:20px" *ngIf="submitted">
+                  Form Submitted
+                  <br>
+
+                </div>
+              </div>
+            </p-panel>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

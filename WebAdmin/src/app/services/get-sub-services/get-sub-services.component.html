@@ -1,0 +1,23 @@
+<div *ngFor="let sub_service of sub_services" >
+
+  <div class="ui-fluid">
+    <div class="ui-grid-row" >
+      <div class="ui-fluid login">
+        <div class="ui-grid-col-6 "   >
+          <br><br><br>
+          <div class="login" >
+            <label class="fontTextTittle ">Name: {{sub_service.name}}</label>
+          </div>
+          <br><br>
+          <div class="login">
+            <label class="fontText ">Price Sell: {{sub_service.price_sell}}</label>
+          </div> <br><br>
+          <div class="login">
+            <label class="fontText ">Price Buy: {{sub_service.price_buy}}</label>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+

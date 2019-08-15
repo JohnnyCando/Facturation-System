@@ -1,0 +1,57 @@
+<body class="body2">
+<div class="login " *ngFor=" let product of productsInWineries" align="center">
+  <div class="border">
+    <p-card header="Producto :  {{product.name}} " subheader=""
+            [style]="{width: '500px',height:'410px'}"
+            styleClass="ui-card-shadow ">
+      <p-header>
+      </p-header>
+      <br><br>
+      <div align="center">
+        <div aling="center">
+          <div class="ui-grid-row" align="center">
+            <div class="ui-grid-col-2">
+              Ubicación:
+            </div>
+            <div align="center">
+              {{product.description}}
+            </div>
+          </div>
+        </div>
+        <br>
+        <br>
+
+        <br>
+        <br>
+        <div aling="center">
+          <div class="ui-grid-row">
+            <div class="ui-grid-col-2">
+              Quantity:
+            </div>
+            <div align="center">
+              {{product.quantityOfProducts}}
+            </div>
+          </div>
+        </div>
+        <br>
+        <br>
+        <br>
+        <div class="ui-grid-row">
+          <div class="ui-grid-col-6">
+            <button pButton type="submit" label="Actualizar Cantidad del Productos" (click)="UpdateQuantity(product.id,product.quantityOfProducts)"
+            ></button>
+          </div>
+
+        </div>
+      </div>
+      <p-footer>
+        ______________________________________________________
+      </p-footer>
+    </p-card>
+
+  </div>
+  <br><br><br>
+</div>
+
+
+

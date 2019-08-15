@@ -1,0 +1,116 @@
+
+<br>
+<br>
+<br>
+<p-toast [style]="{marginTop: '80px'}"></p-toast>
+<div class="ui-fluid">
+  <div class="ui-grid-row">
+    <div class="ui-grid-col-2 containers ui-fluid ">
+      <br>
+      <br>
+      <br>
+      <div class="ui-fluid">
+
+      </div>
+    </div>
+    <div class="ui-fluid">
+      <div class="ui-grid-col-6">
+        <div>
+          <form [formGroup]="SaleNote" class="login-container"
+                (ngSubmit)="onSubmit(SaleNote.value)">
+            <p-panel
+              class="ng-tns-c4-15 ui-panel-titlebar ui-widget-header ui-helper-clearfix ui-corner-all ng-star-inserted "
+              header="Create Sale Notes">
+              <div class="ui-grid ui-grid-responsive ui-grid-pad ui-fluid" style="margin: 10px 0px">
+
+                <div class="ui-grid-row">
+                  <div class="ui-grid-col-2">
+                    User *:
+                  </div>
+                  <div class="ui-grid-col-6">
+                    <p-dropdown [options]="users" placeholder="Select a Brand" formControlName="user_id"
+                                [(ngModel)]="sales_note.user_id"
+                    ></p-dropdown>
+                  </div>
+                  <div>
+                    <p-message severity="error" text="Type Products is required"
+                               *ngIf="!SaleNote.controls['user_id'].valid&&SaleNote.controls['user_id'].dirty"></p-message>
+                    <p-message severity="success"
+                               *ngIf="SaleNote.controls['user_id'].valid && SaleNote.controls['user_id'].dirty"></p-message>
+                  </div>
+                </div>
+                <br>
+                <div class="ui-grid-row">
+                  <div class="ui-grid-col-2">
+                    Type Products *:
+                  </div>
+                  <div class="ui-grid-col-6">
+                    <p-dropdown [options]="typeProducts" placeholder="Select a Brand" formControlName="type_products"
+                                [(ngModel)]="detail.type_products"
+                                (onChange)="getServices(detail.type_products)"
+                    ></p-dropdown>
+                  </div>
+                  <div>
+                    <p-message severity="error" text="type products is required"
+                               *ngIf="!SaleNote.controls['type_products'].valid&&SaleNote.controls['type_products'].dirty"></p-message>
+                    <p-message severity="success"
+                               *ngIf="SaleNote.controls['type_products'].valid && SaleNote.controls['type_products'].dirty"></p-message>
+                  </div>
+                </div>
+                  <br>
+                <div class="ui-grid-row">
+                  <div class="ui-grid-col-2">
+                    Products *:
+                  </div>
+                  <div class="ui-grid-col-6">
+                    <p-dropdown [options]="Products" placeholder="Select a Brand" formControlName="products_id"
+                                [(ngModel)]="detail.products_id"
+                    ></p-dropdown>
+                  </div>
+                  <div>
+                    <p-message severity="error" text="products is required"
+                               *ngIf="!SaleNote.controls['products_id'].valid&&SaleNote.controls['products_id'].dirty"></p-message>
+                    <p-message severity="success"
+                               *ngIf="SaleNote.controls['products_id'].valid && SaleNote.controls['products_id'].dirty"></p-message>
+                  </div>
+                </div>
+                <br>
+                <div class="ui-grid-row">
+                  <div class="ui-grid-col-2">
+                    quantity for Product *:
+                  </div>
+                  <div class="ui-grid-col-6">
+                    <input pInputText type="text"
+                           class="ng-untouched ng-pristine ng-invalid ui-inputtext ui-corner-all ui-state-default ui-widget"
+                           formControlName="quantityXProducts" [(ngModel)]="detail.quantityXProducts" placeholder="Required"/>
+                  </div>
+                  <div>
+                    <p-message severity="error" text="price_buy is required"
+                               *ngIf="!SaleNote.controls['quantityXProducts'].valid&&SaleNote.controls['quantityXProducts'].dirty"></p-message>
+                    <p-message severity="success"
+                               *ngIf="SaleNote.controls['quantityXProducts'].valid&&SaleNote.controls['quantityXProducts'].dirty"></p-message>
+                  </div>
+                </div>
+                <br>
+                <button pButton type="submit" label="Añadir Product" (click)="addDetail(detail.products_id,detail.quantityXProducts)"
+                        ></button>
+                <br>
+                <div class="ui-grid-row">
+                  <div class="ui-grid-col-2"></div>
+                  <div class="ui-grid-col-6">
+                    <button pButton type="submit" label="Register" (click)="onRegister()"
+                           ></button>
+                  </div>
+                  <div class="ui-grid-col-4"></div>
+                </div>
+              </div>
+            </p-panel>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
